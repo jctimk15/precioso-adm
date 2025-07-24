@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_produtos_variacaos",
+  "info": {
+    "displayName": "Variacao"
+  },
+  "options": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

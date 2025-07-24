@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "produtos_destaques",
+  "info": {
+    "singularName": "produtos-destaque",
+    "pluralName": "produtos-destaques",
+    "displayName": "ProdutosDestaque"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "imagens": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "codigoDestaque": {
+      "type": "uid",
+      "targetField": "nome"
+    }
+  }
+}
