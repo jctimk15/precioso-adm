@@ -1,10 +1,25 @@
 // path: precioso-adm/config/database.ts
 
-import path from 'path';
 import { parse } from 'pg-connection-string';
 
 export default ({ env }) => {
-  const { host, port, database, user, password } = parse(env('DATABASE_URL'));
+  const dbUrl = env('DATABASE_URL');
+
+  // Se a DATABASE_URL não existir (como durante o build), usa uma config padrão.
+  if (!dbUrl) {
+    return {
+      connection: {
+        client: 'sqlite',
+        connection: {
+          filename: '.tmp/data.db',
+        },
+        useNullAsDefault: true,
+      },
+    }
+  }
+
+  // Se a DATABASE_URL existir (com o site no ar), usa a config do PostgreSQL.
+  const { host, port, database, user, password } = parse(dbUrl);
 
   return {
     connection: {
@@ -15,9 +30,9 @@ export default ({ env }) => {
         database,
         user,
         password,
-        ssl: { rejectUnauthorized: false }, // Adicionado para conexões no Render
+        ssl: { rejectUnauthorized: false },
       },
       debug: false,
     },
-  }
+  };
 };
