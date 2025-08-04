@@ -1,8 +1,12 @@
-// em precioso-adm/config/server.js
-module.exports = ({ env }) => ({
+// path: precioso-adm/config/server.ts
+
+export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 8000), // MUDAMOS A PORTA AQUI
+  port: env.int('PORT', 8000),
   app: {
     keys: env.array('APP_KEYS'),
+  },
+  webhooks: {
+    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
 });
